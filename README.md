@@ -10,8 +10,7 @@ This guide provides instructions for installing and setting up NVIDIA's TensorRT
 ### 1. Create a Conda Environment
 
 ```bash
-# Create a new conda environment with Python 3.10
-# Note: TensorRT-LLM currently works with Python 3.10, not 3.11 (installation with 3.11 was tested but failed)
+# Create a new conda environment with Python 3.10 (installation with 3.11 was tested but failed)
 conda create -n tensorrt_llm_new python=3.10 -y
 
 # Activate the environment
@@ -50,7 +49,7 @@ Add Conda's library path to the LD_LIBRARY_PATH:
 export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
 ```
 
-For persistence, add this line to your `~/.bashrc` or `~/.profile` file.
+For persistence, add this line to your `~/.bashrc` file.
 
 ### MPI4Py Symbol Issues
 
@@ -59,7 +58,7 @@ If you encounter an error similar to:
 ImportError: ...mpi4py/MPI.cpython-310-x86_64-linux-gnu.so: undefined symbol: MPI_Aint_add
 ```
 
-This implies that mpi4py was automatically compiled against a different MPI version than the OpenMPI you installed via Conda. The mpi4py package needs to be compiled against the same OpenMPI installation. Fix it by:
+This implies that mpi4py was compiled against a different MPI version than the OpenMPI you installed via Conda. The mpi4py package needs to be compiled against the same OpenMPI installation. Fix it by:
 ```bash
 # Uninstall the pip version of mpi4py
 pip uninstall mpi4py -y
